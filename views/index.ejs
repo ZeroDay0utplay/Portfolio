@@ -36,7 +36,7 @@
         <div class="container">
             <div class="row">
                 <div class="about-col-1">
-                    <img src="./images/user.png" alt="">
+                    <img src="./images/me.png" alt="">
                 </div>
                 <div class="about-col-2">
                     <h1 class="sub-title">About Me</h1>
@@ -170,7 +170,7 @@
                     <a href="./images/CV.pdf" download class="btn btn2">Download CV</a>
                 </div>
                 <div class="contact-right">
-                    <form name='submit-to-google-sheet' method="post" action="/api/contact">
+                    <form name='contact-form' method="post" action="/contact">
                         <input type="text" name="Name" placeholder="Your name" required>
                         <input type="email" name="Email" placeholder="Your email" required>
                         <textarea name="Message" rows="6" placeholder="Your message"></textarea>
@@ -211,26 +211,6 @@
             side_menu.style.right = "-200px";
         }
 
-    </script>
-
-    <script>
-        //const scriptURL = 'https://script.google.com/macros/s/AKfycbxM1oew0TVWKv4ppua_59Qs44ohlm-_5qvY3FVotGrynvyiK6mGFGUQV10oIbCLhpMj/exec'
-        const form = document.forms['submit-to-google-sheet']
-        const msg = document.getElementById("msg");
-    
-        form.addEventListener('submit', e => {
-        e.preventDefault()
-        fetch("/api/contact", { method: 'POST', body: new FormData(form)})
-            .then(response => {
-                console.log(response);
-                msg.innerHTML = "Message sent successfully";
-                setTimeout(()=>{
-                    msg.innerHTML = "";
-                }, 5000)
-                form.reset();
-            })
-            .catch(error => console.error('Error!', error.message))
-        })
     </script>
 
 </body>
