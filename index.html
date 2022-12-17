@@ -170,12 +170,13 @@
                     <a href="./images/CV.pdf" download class="btn btn2">Download CV</a>
                 </div>
                 <div class="contact-right">
-                    <form>
-                        <input type="text" name="name" id="" placeholder="Your name" required>
-                        <input type="email" name="email" id="" placeholder="Your email" required>
-                        <textarea name="message" rows="6" placeholder="Your message"></textarea>
+                    <form name='submit-to-google-sheet'>
+                        <input type="text" name="Name" placeholder="Your name" required>
+                        <input type="email" name="Email" placeholder="Your email" required>
+                        <textarea name="Message" rows="6" placeholder="Your message"></textarea>
                         <button type="submit" class="btn btn2">Submit</button>
                     </form> 
+                    <span id="msg"></span>
                 </div>
             </div>
         </div>
@@ -210,6 +211,25 @@
             side_menu.style.right = "-200px";
         }
 
+    </script>
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxM1oew0TVWKv4ppua_59Qs44ohlm-_5qvY3FVotGrynvyiK6mGFGUQV10oIbCLhpMj/exec'
+        const form = document.forms['submit-to-google-sheet']
+        const msg = document.getElementById("msg");
+    
+        form.addEventListener('submit', e => {
+        e.preventDefault()
+        fetch(scriptURL, { method: 'POST', body: {"name": "test"}})
+            .then(response => {
+                msg.innerHTML = "Message sent successfully";
+                setTimeout(()=>{
+                    msg.innerHTML = "";
+                }, 5000)
+                form.reset();
+            })
+            .catch(error => console.error('Error!', error.message))
+        })
     </script>
 
 </body>
