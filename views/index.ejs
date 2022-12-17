@@ -171,9 +171,9 @@
                 </div>
                 <div class="contact-right">
                     <form name='contact-form' method="post" action="/contact">
-                        <input type="text" name="Name" placeholder="Your name" required>
-                        <input type="email" name="Email" placeholder="Your email" required>
-                        <textarea name="Message" rows="6" placeholder="Your message"></textarea>
+                        <input id="name" type="text" name="Name" placeholder="Your name" required>
+                        <input id="email" type="email" name="Email" placeholder="Your email" required>
+                        <textarea id="message" name="Message" rows="6" placeholder="Your message"></textarea>
                         <button type="submit" class="btn btn2">Submit</button>
                     </form> 
                     <span id="msg"></span>
@@ -211,6 +211,29 @@
             side_menu.style.right = "-200px";
         }
 
+    </script>
+
+    <script>
+        const form = document.forms['contact-form'];
+        const msg = document.getElementById("msg");
+    
+        form.addEventListener('submit', e => {
+        e.preventDefault()
+        req = {
+            "Name": document.getElementById("name").value,
+            "Email": document.getElementById("email").value,
+            "Message": document.getElementById("message").value
+        }
+        fetch("/contact", { method: 'POST', headers: {"Content-Type": "application/json"}, body: JSON.stringify(req)})
+            .then(response => {
+                msg.innerHTML = "Message send successfully";
+                setTimeout(()=>{
+                    msg.innerHTML = "";
+                }, 5000);
+                form.reset();
+            })
+            .catch(error => console.error('Error!', error.message))
+        })
     </script>
 
 </body>

@@ -22,8 +22,10 @@ const Form = mongoose.model("Form", formSchema);
 const app = express();
 const port = 3000 || process.env.PORT
 app.use(express.static(__dirname));
-app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
+
+app.use(express.json());
+
 
 
 app.get("/", (req, res)=>{
