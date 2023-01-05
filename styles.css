@@ -157,6 +157,7 @@ nav ul li a:hover::after{
 
 .tab-contents ul li span{
     color: #b54769;
+    font-size: 27px;
 }
 
 
@@ -392,12 +393,34 @@ form .btn2{
 
 .cred{
     text-decoration: none;
-    color: #fff;
+    color: green
+}
+
+.proj{
+    text-decoration: none;
+    color: #ababab;
+}
+
+.book{
+    text-decoration: none;
+    color: grey
 }
 
 .copy{
     text-decoration: none;
     color: #ff004f;
+}
+
+.ps{
+    color: rgb(0, 136, 255);
+    font-size: 23px;
+}
+
+.ds{
+    text-decoration: none;
+    color: green;
+    font-size: 21px;
+    margin-left: 27px;
 }
 
 
